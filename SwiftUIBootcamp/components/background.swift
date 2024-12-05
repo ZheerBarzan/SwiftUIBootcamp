@@ -4,26 +4,6 @@ import SwiftUI
 
 struct BackgroundComponent: View {
     var body: some View {
-
-        VStack{
-            Text("Hello, World!")
-       .background(
-    
-        ShapesComponent()
-            
-       )
-       .overlay(
-        
-        
-        ColorsComponent()
-                
-       )
-       .ignoresSafeArea()
-                
-
-        }
-        
-       
             Image(systemName: "heart.fill")
                 .font(.largeTitle)
                 .foregroundColor(.white)
@@ -45,9 +25,6 @@ struct BackgroundComponent: View {
                             , alignment: .bottomTrailing
                         )
                 )
-                
-                .ignoresSafeArea()
-        
     }
        
 }
