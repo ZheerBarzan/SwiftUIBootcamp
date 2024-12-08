@@ -20,16 +20,34 @@ struct scrollViews: View {
     var body: some View {
         
         // vertical Scrollview
+//        ScrollView(.vertical, showsIndicators: false, content: {
+//            VStack{
+//                ForEach (EmployeeData, id: \.job) { employee in
+//                    employee
+//                }
+//            }
+//        })
+        // horizontal Scrollview
+//        ScrollView(.horizontal, showsIndicators: false, content: {
+//            HStack{
+//                ForEach(EmployeeData.indices) { index in
+//                    EmployeeData[index]
+//                }
+//            }
+//
+//        })
+        
+        // LazyVStack
         ScrollView(.vertical, showsIndicators: false, content: {
-            VStack{
+            LazyVStack{
                 ForEach (EmployeeData, id: \.job) { employee in
                     employee
                 }
             }
         })
-        // horizontal Scrollview
+        // LazyHStack
         ScrollView(.horizontal, showsIndicators: false, content: {
-            HStack{
+            LazyHStack{
                 ForEach(EmployeeData.indices) { index in
                     EmployeeData[index]
                 }
