@@ -24,8 +24,7 @@ struct stateProperty: View {
             
             HStack(spacing: 20){
                 Button(action:{
-                    count += 1
-                    backgroundColor = .blue
+                    plusButtonPressed()
                 }, label: {
                     Text("Plus 1")
                         .padding()
@@ -35,8 +34,7 @@ struct stateProperty: View {
                         .shadow(radius: 10)
                 })
                 Button(action:{
-                    count -= 1
-                    backgroundColor = .red
+                    minusButtonPressed()
 
                 }, label: {
                     Text("Minus 1 ")
@@ -47,8 +45,7 @@ struct stateProperty: View {
                         .shadow(radius: 10)
                 })
                 Button(action:{
-                    count = count * count
-                    backgroundColor = .orange
+                    squareButtonPressed()
                 }, label: {
                     Text("Squre")
                         .padding()
@@ -58,8 +55,7 @@ struct stateProperty: View {
                         .shadow(radius: 10)
                 })
                 Button(action:{
-                    count = 0
-                    backgroundColor = .green
+                    resetButtonPressed()
                 }, label: {
                     Text("Reset")
                         .padding()
@@ -75,6 +71,24 @@ struct stateProperty: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(backgroundColor
             .ignoresSafeArea())
+    }
+    
+    // extracting fuctions to achive modularity and clean code
+    func plusButtonPressed(){
+        count += 1
+        backgroundColor = .blue
+    }
+    func minusButtonPressed(){
+        count -= 1
+        backgroundColor = .red
+    }
+    func squareButtonPressed(){
+        count = count * count
+        backgroundColor = .orange
+    }
+    func resetButtonPressed(){
+        count = 0
+        backgroundColor = .green
     }
 }
 
