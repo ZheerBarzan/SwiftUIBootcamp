@@ -95,3 +95,5 @@ struct stateProperty: View {
 #Preview {
     stateProperty()
 }
+
+

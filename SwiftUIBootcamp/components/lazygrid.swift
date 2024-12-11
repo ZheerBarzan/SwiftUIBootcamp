@@ -28,7 +28,7 @@ struct lazygrid: View {
         F1GridComponentModel(DriverName: "Alex Albon", DriverNumber: 23, DriverTeam: .Williams),
         F1GridComponentModel(DriverName: "Daniel Ricciardo", DriverNumber: 3, DriverTeam: .Alphatauri),
         F1GridComponentModel(DriverName: "Zhou Guanyu", DriverNumber: 47, DriverTeam: .AlfaRomeo),
-        F1GridComponentModel(DriverName: "Logen Sargeant", DriverNumber: 3, DriverTeam: .Williams),
+        F1GridComponentModel(DriverName: "Logen Sargeant", DriverNumber: 2, DriverTeam: .Williams),
         F1GridComponentModel(DriverName: "Valtteri Bottas", DriverNumber: 77, DriverTeam: .AlfaRomeo)
     ]
     
@@ -94,17 +94,17 @@ struct F1GridComponent: View {
                 VStack { // Stack the content vertically
                     Text(DriverName) // Driver's name
                         .font(.headline) // Set font style
-                        .foregroundColor(.white) // White text color
+                        .foregroundColor(.black) // White text color
                     Text("#\(DriverNumber)") // Driver's number
                         .font(.subheadline) // Set font style
-                        .foregroundColor(.white.opacity(0.8)) // Light white color for the number
+                        .foregroundColor(.black.opacity(0.8)) // Light white color for the number
                     Divider() // A divider to separate the name and number from the team
                         .frame(height: 2)
-                        .background(Color.white.opacity(0.8)) // Light white divider color
+                        .background(Color.black.opacity(0.8)) // Light white divider color
                         .padding(.horizontal, 20) // Add horizontal padding to the divider
                     Text("\(DriverTeam.rawValue)") // Driver's team name
                         .font(.caption) // Set font style
-                        .foregroundColor(.white.opacity(0.8)) // Light white color for the team name
+                        .foregroundColor(.black.opacity(0.8)) // Light white color for the team name
                 }
                 .padding() // Add padding inside the VStack
             )
