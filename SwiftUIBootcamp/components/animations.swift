@@ -14,8 +14,9 @@ struct animations: View {
         
         VStack{
             Button(action:{
-                withAnimation(.easeInOut(duration: 1)){
+                withAnimation(.easeInOut(duration: 1).repeatForever()){
                     isAnimated.toggle()
+                        
                 }
             }, label: {
                 Text("Animate")
@@ -35,9 +36,10 @@ struct animations: View {
             Spacer()
             
             RoundedRectangle(cornerRadius:isAnimated ? 50 : 25.0)
+                
                 .fill(isAnimated ? .red : .green)
                 .frame(width: isAnimated ? 100 : 300, height: isAnimated ? 100 : 300)
-                .animation(.easeInOut(duration: 1))
+                
                 .transition(.scale)
            
             
