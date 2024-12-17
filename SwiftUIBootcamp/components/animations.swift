@@ -32,6 +32,15 @@ struct animations: View {
                     .overlay(Text("Hello, World!").foregroundColor(.white))
             }
             
+            Spacer()
+            
+            RoundedRectangle(cornerRadius:isAnimated ? 50 : 25.0)
+                .fill(isAnimated ? .red : .green)
+                .frame(width: isAnimated ? 100 : 300, height: isAnimated ? 100 : 300)
+                .animation(.easeInOut(duration: 1))
+                .transition(.scale)
+           
+            
             
         }
     }
