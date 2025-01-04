@@ -40,15 +40,15 @@ struct tapGesture: View {
                     backgroundColor = .green
                 }
             
-            Text("Reset I'm also a Text")
+            Text("Reset Tap me Twice")
                 .padding()
                 .foregroundColor(.white)
                 .background(Color.red)
                 .cornerRadius(15)
-                .onTapGesture {
+                .onTapGesture(count: 2, perform: {
                     isTapped.toggle()
                     backgroundColor = .red
-                }
+                })
             
             
             
