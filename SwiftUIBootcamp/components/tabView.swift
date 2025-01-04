@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct TabViewExample: View {
+    // MARK: PROPERTIES
     @State private var selectedTab = 0
 
+    
+    // MARK: body
     var body: some View {
         TabView(selection: $selectedTab) {
             IconComponent()
@@ -39,6 +42,8 @@ struct TabViewExample: View {
         .accentColor(.black)
     }
 }
+
+//MARK: preview
 
 #Preview {
     TabViewExample()
