@@ -33,8 +33,8 @@ struct OnBoarding: View {
     @AppStorage("age") var currentUserAge: Int?
     @AppStorage("gender") var currentUserGender: String?
     @AppStorage("signed_in") var currentUserSignedIn: Bool = false
-
-
+    
+    
     
     
     let transiton:AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
@@ -49,15 +49,15 @@ struct OnBoarding: View {
                 case 1:
                     addNameSection
                         .transition(transiton)
-
+                    
                 case 2:
                     addAgeSection
                         .transition(transiton)
-
+                    
                 case 3:
                     addGenderSection
                         .transition(transiton)
-
+                    
                 default:
                     Text("cannot find")
                 }
@@ -75,7 +75,7 @@ struct OnBoarding: View {
         })
     }
     
-    }
+}
 
 #Preview {
     OnBoarding()
@@ -85,19 +85,19 @@ struct OnBoarding: View {
 extension OnBoarding{
     
     private var bottomButton: some View{
-            
+        
         Text(onBoardingState == 0 ? "SignUP" : onBoardingState == 3 ? "Finish" : "Next")
-                .font(.system(.headline, design: .monospaced))
-                .fontWeight(.regular)
-                .foregroundColor(.white)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .background(Color.black)
-                .cornerRadius(15)
-                .onTapGesture {
-                    nextButtonPressed()
-                }
-        }
+            .font(.system(.headline, design: .monospaced))
+            .fontWeight(.regular)
+            .foregroundColor(.white)
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(Color.black)
+            .cornerRadius(15)
+            .onTapGesture {
+                nextButtonPressed()
+            }
+    }
     
     private var wellcomeScreen: some View{
         VStack(spacing: 40){
@@ -130,7 +130,7 @@ extension OnBoarding{
             
         }.padding(30)
     }
-
+    
     private var addAgeSection: some View{
         VStack(spacing:40){
             Spacer()
@@ -161,28 +161,28 @@ extension OnBoarding{
                 .foregroundColor(.white)
             
             Picker("Select a Gender: ",selection: $userGender,
-                content: {
+                   content: {
                 Text("Male").tag("Male")
                 Text("Female").tag("Female")
             }).pickerStyle(WheelPickerStyle())
-
+            
             
             Text(userGender.count > 1 ? userGender : "Select a Gender")
-                                  .font(.system(.headline, design: .monospaced))
-                                  .fontWeight(.regular)
-                                  .foregroundColor(.white)
-                                  .frame(height: 60)
-                                  .frame(maxWidth: .infinity)
-                                  .background(.black)
-                                  .cornerRadius(15)
-           
+                .font(.system(.headline, design: .monospaced))
+                .fontWeight(.regular)
+                .foregroundColor(.white)
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(.black)
+                .cornerRadius(15)
+            
             
             Spacer()
             Spacer()
             
         }.padding(30)
     }
-
+    
 }
 
 // MARK: Functions
@@ -210,8 +210,8 @@ extension OnBoarding{
             signIn()
         }else{
             withAnimation(.spring()){
-            onBoardingState += 1
-                        
+                onBoardingState += 1
+                
             }
         }
         
