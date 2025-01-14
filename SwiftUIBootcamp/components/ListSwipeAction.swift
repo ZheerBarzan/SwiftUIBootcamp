@@ -1,10 +1,3 @@
-//
-//  ListSwipeAction.swift
-//  SwiftUIBootcamp
-//
-//  Created by Zheer Barzan on 13/1/25.
-//
-
 import SwiftUI
 
 struct ListSwipeAction: View {
@@ -21,7 +14,7 @@ struct ListSwipeAction: View {
         "Haas"
     ]
     
-    @State private var Drivers: [String:String] = [
+    @State private var Drivers: [String: String] = [
         "Mercedes": "Lewis Hamilton",
         "Ferrari": "Charles Leclerc",
         "Red Bull": "Max Verstappen",
@@ -32,53 +25,61 @@ struct ListSwipeAction: View {
         "Alfa Romeo": "Kimi Raikkonen",
         "Williams": "George Russell",
         "Haas": "Nico Hulkenberg"
-        
     ]
+    
     var body: some View {
         NavigationView {
             List {
+                // F1 Teams Section
                 Section(header: Text("F1 Teams")) {
                     ForEach(f1Teams, id: \.self) { team in
                         Text(team.capitalized)
-                            .swipeActions(edge: .trailing,
-                                          allowsFullSwipe: true,
-                                          content:{
-                                Button("delete"){
-                                    
-                                }.tint(.red)
-                                
-                                
-                            })
-                            .swipeActions(edge: .leading,
-                                          allowsFullSwipe: false){
-                                Button("Archive"){
-                                    deleteItems(at: team.id)
-                                }.tint(.yellow)
+                            .swipeActions(edge: .trailing) {
+                                Button(role: .destructive) {
+                                    deleteTeam(team: team)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                            .swipeActions(edge: .leading) {
+                                Button("Archive") {
+                                    print("\(team) archived.")
+                                }
+                                .tint(.yellow)
                             }
                     }
-                    .onDelete(perform: deleteItems)
                     .onMove(perform: moveItems)
                 }
                 
+                // Drivers Section
                 Section(header: Text("Drivers")) {
                     ForEach(f1Teams, id: \.self) { team in
-                        Text("\(Drivers[team]!), \(team)")
+                        if let driver = Drivers[team] {
+                            Text("\(driver), \(team)")
+                        } else {
+                            Text("No driver assigned for \(team)")
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
             }
-            .accentColor(.purple)
-            .listStyle(DefaultListStyle())
+            .listStyle(.insetGrouped)
             .navigationTitle("Formula 1 Teams")
-            .navigationBarItems(leading: EditButton(), trailing: Button(action: addItem, label: {
-                Image(systemName: "plus")
-            }))
+            .navigationBarItems(
+                leading: EditButton(),
+                trailing: Button(action: addTeam) {
+                    Image(systemName: "plus")
+                }
+            )
         }
-        .accentColor(.red)
     }
     
-    // Deletes selected items from the list
-    func deleteItems(at offsets: IndexSet) {
-        f1Teams.remove(atOffsets: offsets)
+    // Deletes a team and its driver
+    func deleteTeam(team: String) {
+        if let index = f1Teams.firstIndex(of: team) {
+            f1Teams.remove(at: index)
+            Drivers.removeValue(forKey: team)
+        }
     }
     
     // Moves items within the list
@@ -86,8 +87,11 @@ struct ListSwipeAction: View {
         f1Teams.move(fromOffsets: source, toOffset: destination)
     }
     
-    func addItem() {
-        f1Teams.append("New Team")
+    // Adds a new team with a placeholder driver
+    func addTeam() {
+        let newTeam = "New Team \(f1Teams.count + 1)"
+        f1Teams.append(newTeam)
+        Drivers[newTeam] = "New Driver"
     }
 }
 
